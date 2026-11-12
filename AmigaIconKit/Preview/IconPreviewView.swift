@@ -133,10 +133,17 @@ struct AttributesGrid: View {
             if let window = info.toolWindow { row("Tool window", window) }
             GridRow {
                 Text("Tool types").foregroundStyle(.secondary).gridColumnAlignment(.trailing)
-                if let types = info.toolTypes, !types.isEmpty {
+                let all = info.toolTypes ?? []
+                // NewIcons image data is binary-looking text; summarise it instead of listing it.
+                let imageLines = all.filter(NewIconsDecoder.isImageData).count
+                let types = all.filter { !NewIconsDecoder.isImageData($0) && $0 != Self.newIconsMarker }
+                if !types.isEmpty || imageLines > 0 {
                     VStack(alignment: .leading, spacing: 2) {
                         ForEach(Array(types.enumerated()), id: \.offset) { _, t in
                             Text(t).font(.system(.body, design: .monospaced)).textSelection(.enabled)
+                        }
+                        if imageLines > 0 {
+                            Text("NewIcons image data (\(imageLines) lines)").foregroundStyle(.secondary).italic()
                         }
                     }
                 } else {
@@ -149,12 +156,17 @@ struct AttributesGrid: View {
         }
     }
 
+    static let newIconsMarker = "*** DON'T EDIT THE FOLLOWING LINES!! ***"
+
     private var formatDescription: String {
         switch file {
         case .png: return "OS4 / MorphOS PNG icon"
         case .diskObject(let icon):
             if icon.glow?.hasARGB == true { return "OS3.5 colour icon with ARGB images" }
             if icon.glow != nil { return "OS3.5 colour icon (GlowIcon)" }
+            if let newIcons = icon.newIcons {
+                return "NewIcons icon (\(newIcons.normal.image.width)×\(newIcons.normal.image.height), \(newIcons.normal.palette.count) colours)"
+            }
             return "Classic Workbench icon"
         }
     }

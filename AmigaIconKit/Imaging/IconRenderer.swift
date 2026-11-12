@@ -3,7 +3,7 @@ import Foundation
 
 /// One renderable picture of an icon, with a label.
 public struct IconPicture: Identifiable, Sendable {
-    public enum Kind: String, Sendable { case color, classic, argb, png }
+    public enum Kind: String, Sendable { case color, classic, argb, png, newIcons }
     public let id: String
     public let title: String
     public let kind: Kind
@@ -41,7 +41,8 @@ public enum IconRenderer {
             .compactMap { ARGBChunkDecoder.decode($0.data, width: glow.width, height: glow.height) }
     }
 
-    /// All pictures contained in an icon file, best quality first.
+    /// All pictures contained in an icon file, best quality first
+    /// (ARGB, OS3.5, NewIcons, then classic).
     public static func pictures(of file: IconFile, classicPreset: PalettePreset = WorkbenchPalettes.workbench31) -> [IconPicture] {
         switch file {
         case .png(let png):
@@ -57,6 +58,14 @@ public enum IconRenderer {
                 out.append(IconPicture(id: "color-normal", title: "OS3.5 normal", kind: .color, image: render(glow.normal)))
                 if let s = glow.selected {
                     out.append(IconPicture(id: "color-selected", title: "OS3.5 selected", kind: .color, image: render(s)))
+                }
+            }
+            if let newIcons = icon.newIcons {
+                out.append(IconPicture(id: "newicons-normal", title: "NewIcons normal", kind: .newIcons,
+                                       image: render(newIcons.normal)))
+                if let s = newIcons.selected {
+                    out.append(IconPicture(id: "newicons-selected", title: "NewIcons selected", kind: .newIcons,
+                                           image: render(s)))
                 }
             }
             let palette = { (depth: Int) in classicPalette(depth: depth, preset: classicPreset) }

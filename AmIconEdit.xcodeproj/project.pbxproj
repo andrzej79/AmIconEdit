@@ -95,13 +95,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AE0000000000000000000019 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
-		AE0000000000000000000002 /* AmigaIconKit.framework */ = {isa = PBXFileReference; explicitFileType = "wrapper.framework"; includeInIndex = 0; path = AmigaIconKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE000000000000000000001A /* AmIconEdit.app */ = {isa = PBXFileReference; explicitFileType = "wrapper.application"; includeInIndex = 0; path = AmIconEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE0000000000000000000002 /* AmigaIconKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AmigaIconKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0000000000000000000008 /* AmIconQuickLook.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AmIconQuickLook.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE000000000000000000000A /* AmIconThumbnail.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AmIconThumbnail.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE000000000000000000001B /* AmigaIconKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; path = AmigaIconKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE000000000000000000001C /* AmIconEditTests.xctest */ = {isa = PBXFileReference; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; path = AmIconEditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE0000000000000000000019 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		AE000000000000000000001A /* AmIconEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmIconEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE000000000000000000001B /* AmigaIconKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmigaIconKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE000000000000000000001C /* AmIconEditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmIconEditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -261,33 +261,6 @@
 			productReference = AE0000000000000000000002 /* AmigaIconKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		AE0000000000000000000016 /* AmIconEdit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AE0000000000000000000036 /* Build configuration list for PBXNativeTarget "AmIconEdit" */;
-			buildPhases = (
-				AE0000000000000000000031 /* Sources */,
-				AE0000000000000000000025 /* Frameworks */,
-				AE0000000000000000000032 /* Resources */,
-				AE0000000000000000000017 /* Embed Frameworks */,
-				AE0000000000000000000018 /* Embed Foundation Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AE0000000000000000000033 /* PBXTargetDependency */,
-				AE0000000000000000000034 /* PBXTargetDependency */,
-				AE0000000000000000000035 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				AE000000000000000000001E /* AmIconEdit */,
-			);
-			name = AmIconEdit;
-			packageProductDependencies = (
-			);
-			productName = AmIconEdit;
-			productReference = AE000000000000000000001A /* AmIconEdit.app */;
-			productType = "com.apple.product-type.application";
-		};
 		AE000000000000000000000F /* AmIconQuickLook */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE000000000000000000003A /* Build configuration list for PBXNativeTarget "AmIconQuickLook" */;
@@ -333,6 +306,33 @@
 			productName = AmIconThumbnail;
 			productReference = AE000000000000000000000A /* AmIconThumbnail.appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		AE0000000000000000000016 /* AmIconEdit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE0000000000000000000036 /* Build configuration list for PBXNativeTarget "AmIconEdit" */;
+			buildPhases = (
+				AE0000000000000000000031 /* Sources */,
+				AE0000000000000000000025 /* Frameworks */,
+				AE0000000000000000000032 /* Resources */,
+				AE0000000000000000000017 /* Embed Frameworks */,
+				AE0000000000000000000018 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AE0000000000000000000033 /* PBXTargetDependency */,
+				AE0000000000000000000034 /* PBXTargetDependency */,
+				AE0000000000000000000035 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AE000000000000000000001E /* AmIconEdit */,
+			);
+			name = AmIconEdit;
+			packageProductDependencies = (
+			);
+			productName = AmIconEdit;
+			productReference = AE000000000000000000001A /* AmIconEdit.app */;
+			productType = "com.apple.product-type.application";
 		};
 		AE0000000000000000000042 /* AmigaIconKitTests */ = {
 			isa = PBXNativeTarget;
@@ -393,13 +393,13 @@
 					AE000000000000000000000D = {
 						CreatedOnToolsVersion = 16.0;
 					};
-					AE0000000000000000000016 = {
-						CreatedOnToolsVersion = 16.0;
-					};
 					AE000000000000000000000F = {
 						CreatedOnToolsVersion = 16.0;
 					};
 					AE0000000000000000000011 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					AE0000000000000000000016 = {
 						CreatedOnToolsVersion = 16.0;
 					};
 					AE0000000000000000000042 = {
@@ -656,13 +656,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmigaIconKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				VERSIONING_SYSTEM = apple-generic;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -678,13 +682,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmigaIconKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				VERSIONING_SYSTEM = apple-generic;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -702,7 +710,10 @@
 				INFOPLIST_FILE = SupportFiles/AmIconEdit/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AmIconEdit;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmIconEdit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -724,7 +735,10 @@
 				INFOPLIST_FILE = SupportFiles/AmIconEdit/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AmIconEdit;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmIconEdit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -742,7 +756,11 @@
 				INFOPLIST_FILE = SupportFiles/AmIconQuickLook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Icon Preview";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmIconEdit.QuickLook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -761,7 +779,11 @@
 				INFOPLIST_FILE = SupportFiles/AmIconQuickLook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Icon Preview";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmIconEdit.QuickLook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -780,7 +802,11 @@
 				INFOPLIST_FILE = SupportFiles/AmIconThumbnail/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Icon Thumbnail";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmIconEdit.Thumbnail";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -799,7 +825,11 @@
 				INFOPLIST_FILE = SupportFiles/AmIconThumbnail/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Amiga Icon Thumbnail";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmIconEdit.Thumbnail";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -813,7 +843,11 @@
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = "$(AMICONEDIT_BUILD)";
 				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmigaIconKitTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -826,7 +860,11 @@
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = "$(AMICONEDIT_BUILD)";
 				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmigaIconKitTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -865,15 +903,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AE0000000000000000000049 /* Build configuration list for PBXProject "AmIconEdit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AE000000000000000000004A /* Debug */,
-				AE000000000000000000004B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		AE0000000000000000000030 /* Build configuration list for PBXNativeTarget "AmigaIconKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -924,6 +953,15 @@
 			buildConfigurations = (
 				AE0000000000000000000056 /* Debug */,
 				AE0000000000000000000057 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE0000000000000000000049 /* Build configuration list for PBXProject "AmIconEdit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE000000000000000000004A /* Debug */,
+				AE000000000000000000004B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

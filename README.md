@@ -22,7 +22,7 @@ A native macOS editor and Quick Look previewer for Amiga Workbench icons (`.info
 
 **Quick Look**
 - Finder thumbnails, drawn pixel-sharp at integer scale.
-- A space-bar preview that shows every image in the icon plus all Workbench attributes.
+- A space-bar preview that shows every image in the icon (OS3.5, NewIcons, ARGB, classic) plus all Workbench attributes.
 
 **File format support**
 
@@ -30,6 +30,7 @@ A native macOS editor and Quick Look previewer for Amiga Workbench icons (`.info
 |---|---|---|
 | Classic `DiskObject` icons (OS 1.x–3.1) | ✔︎ | ✔︎ |
 | OS3.5 `FORM ICON` (FACE/IMAG, RLE) | ✔︎ | ✔︎ |
+| NewIcons (image data in tool types) | preview | kept unchanged (as tool types) |
 | AROS `ARGB` chunks | preview | kept unchanged until the colour image is edited |
 | OS4 / MorphOS PNG icons | preview | converted to OS3.5 when saved |
 
@@ -87,6 +88,7 @@ xcodebuild test -scheme AmIconEdit
 
 - The classic header is a `struct DiskObject` (magic `0xE310`). It is followed by optional drawer data, the bitplane images, the default tool, the tool types and the OS 2.x drawer extension.
 - OS3.5 colour data is an IFF `FORM ICON` appended to the classic icon. `FACE` holds the size and flags. Each `IMAG` holds one image with an optional palette. Pixels are stored either uncompressed or with the bit-packed ByteRun1-style run-length encoding. A selected image may omit its palette and use the normal image's palette instead.
+- NewIcons keep their images in `IM1=`/`IM2=` tool types. A header line holds the transparency flag, the size, the colour count and the palette. Each character carries 7 bits, and characters 0xD1–0xFF encode runs of zero bits. Every line is decoded on its own, and the pixels start on the line after the palette.
 - Classic icons store no palette; their colours come from the Workbench screen. AmIconEdit shows them with a selectable Workbench palette preset.
 
 ## Author
