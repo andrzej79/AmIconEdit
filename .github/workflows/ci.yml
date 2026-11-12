@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode
+        run: sudo xcode-select -s "$(ls -d /Applications/Xcode_16*.app | sort -V | tail -1)"
+      - name: Build and test
+        run: |
+          xcodebuild test \
+            -project AmIconEdit.xcodeproj \
+            -scheme AmIconEdit \
+            -destination 'platform=macOS' \
+            CODE_SIGN_IDENTITY=- \
+            | tee build.log | grep -E '(error|warning):|TEST (SUCCEEDED|FAILED)|Test case .* failed' || true
+          grep -q 'TEST SUCCEEDED' build.log

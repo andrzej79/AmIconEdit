@@ -1,0 +1,17 @@
+// Shared build settings for all AmIconEdit targets.
+// Per-developer overrides (signing team, bundle prefix) go into Config/Local.xcconfig,
+// which is git-ignored. See Config/Local.xcconfig.example.
+
+AMICONEDIT_BUNDLE_PREFIX = com.andrzej79
+AMICONEDIT_VERSION = 1.0
+AMICONEDIT_BUILD = 1
+
+MACOSX_DEPLOYMENT_TARGET = 14.0
+SWIFT_VERSION = 6.0
+
+// "Sign to Run Locally" by default, so the repository builds without any Apple ID.
+CODE_SIGN_STYLE = Automatic
+CODE_SIGN_IDENTITY = -
+DEVELOPMENT_TEAM =
+
+#include? "Local.xcconfig"

@@ -1,0 +1,4 @@
+// Copy to Config/Local.xcconfig (git-ignored) to sign with your own team.
+// DEVELOPMENT_TEAM = ABCDE12345
+// CODE_SIGN_IDENTITY = Apple Development
+// AMICONEDIT_BUNDLE_PREFIX = com.example
