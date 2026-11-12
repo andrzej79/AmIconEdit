@@ -310,29 +310,38 @@ struct IconInspector: View {
 }
 
 /// Editable list of tool types (one `KEY=value` string per line).
+/// NewIcons image data lines (`IM1=`/`IM2=`) are hidden and left untouched.
 struct ToolTypesEditor: View {
     @ObservedObject var editor: EditorState
+    /// Selected row, as a visible index.
     @State private var selection: Int?
 
     private var types: [String] { editor.icon.info.toolTypes ?? [] }
+    private var rowCount: Int { ToolTypeEditing.visibleIndices(types).count }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            if types.isEmpty {
+            if rowCount == 0 {
                 Text("No tool types").foregroundStyle(.secondary)
             }
-            ForEach(Array(types.indices), id: \.self) { index in
+            ForEach(0..<rowCount, id: \.self) { row in
                 HStack(spacing: 6) {
-                    Image(systemName: selection == index ? "smallcircle.filled.circle" : "circle")
-                        .foregroundStyle(selection == index ? Color.accentColor : .secondary)
-                        .onTapGesture { selection = index }
+                    Image(systemName: selection == row ? "smallcircle.filled.circle" : "circle")
+                        .foregroundStyle(selection == row ? Color.accentColor : .secondary)
+                        .onTapGesture { selection = row }
                     TextField("KEY=value", text: Binding(
-                        get: { index < types.count ? types[index] : "" },
-                        set: { v in update("Edit Tool Type", key: "tt-\(index)") { if index < $0.count { $0[index] = v } } }))
+                        get: { ToolTypeEditing.value(types, visible: row) },
+                        set: { v in update("Edit Tool Type", key: "tt-\(row)") { ToolTypeEditing.set(v, visible: row, in: &$0) } }))
                         .font(.system(.body, design: .monospaced))
                         .labelsHidden()
-                        .onTapGesture { selection = index }
+                        .onTapGesture { selection = row }
                 }
+            }
+            let hidden = ToolTypeEditing.hiddenCount(types)
+            if hidden > 0 {
+                Label("NewIcons image data: \(hidden) hidden lines, kept unchanged", systemImage: "photo")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
             HStack(spacing: 4) {
                 Button { add() } label: { Image(systemName: "plus") }.help("Add tool type")
@@ -341,11 +350,14 @@ struct ToolTypesEditor: View {
                 Button { move(-1) } label: { Image(systemName: "arrow.up") }
                     .disabled((selection ?? 0) <= 0).help("Move up")
                 Button { move(1) } label: { Image(systemName: "arrow.down") }
-                    .disabled(selection == nil || selection! >= types.count - 1).help("Move down")
+                    .disabled(selection == nil || selection! >= rowCount - 1).help("Move down")
                 Spacer()
                 Text("(KEY) = disabled").font(.caption).foregroundStyle(.secondary)
             }
             .buttonStyle(.borderless)
+        }
+        .onChange(of: rowCount) { _, count in
+            if let s = selection, s >= count { selection = count > 0 ? count - 1 : nil }
         }
     }
 
@@ -358,20 +370,21 @@ struct ToolTypesEditor: View {
     }
 
     private func add() {
-        let insertAt = selection.map { $0 + 1 } ?? types.count
-        update("Add Tool Type") { $0.insert("NEWTOOLTYPE=", at: min(insertAt, $0.count)) }
-        selection = min(insertAt, types.count - 1)
+        var newRow = 0
+        update("Add Tool Type") { newRow = ToolTypeEditing.insert("NEWTOOLTYPE=", afterVisible: selection, in: &$0) }
+        selection = newRow
     }
 
     private func remove() {
-        guard let index = selection, index < types.count else { return }
-        update("Remove Tool Type") { $0.remove(at: index) }
-        selection = types.isEmpty ? nil : min(index, types.count - 1)
+        guard let row = selection, row < rowCount else { return }
+        update("Remove Tool Type") { ToolTypeEditing.remove(visible: row, in: &$0) }
+        selection = rowCount == 0 ? nil : min(row, rowCount - 1)
     }
 
     private func move(_ delta: Int) {
-        guard let index = selection, index + delta >= 0, index + delta < types.count else { return }
-        update("Move Tool Type") { $0.swapAt(index, index + delta) }
-        selection = index + delta
+        guard let row = selection else { return }
+        var newRow = row
+        update("Move Tool Type") { newRow = ToolTypeEditing.move(visible: row, by: delta, in: &$0) }
+        selection = newRow
     }
 }
