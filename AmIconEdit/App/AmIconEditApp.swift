@@ -4,6 +4,10 @@ import SwiftUI
 @main
 struct AmIconEditApp: App {
     init() {
+        // Classic document behaviour for this app, whatever the system-wide setting: the .info file
+        // is only written on Save, and closing (or quitting) with unsaved edits asks
+        // Save / Don't Save / Cancel instead of silently autosaving into the original file.
+        UserDefaults.standard.set(true, forKey: "NSCloseAlwaysConfirmsChanges")
         #if DEBUG
         DebugSnapshot.scheduleIfRequested()
         #endif
