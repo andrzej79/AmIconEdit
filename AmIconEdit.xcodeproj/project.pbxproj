@@ -702,7 +702,7 @@
 				INFOPLIST_FILE = SupportFiles/AmIconEdit/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AmIconEdit;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 andrzej79. MIT License.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Andrzej Rogozynski (github: andrzej79). MIT License.";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmIconEdit";
@@ -725,7 +725,7 @@
 				INFOPLIST_FILE = SupportFiles/AmIconEdit/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AmIconEdit;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 andrzej79. MIT License.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Andrzej Rogozynski (github: andrzej79). MIT License.";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MARKETING_VERSION = "$(AMICONEDIT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(AMICONEDIT_BUNDLE_PREFIX).AmIconEdit";

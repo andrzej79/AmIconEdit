@@ -89,6 +89,10 @@ xcodebuild test -scheme AmIconEdit
 - OS3.5 colour data is an IFF `FORM ICON` appended to the classic icon. `FACE` holds the size and flags. Each `IMAG` holds one image with an optional palette. Pixels are stored either uncompressed or with the bit-packed ByteRun1-style run-length encoding. A selected image may omit its palette and use the normal image's palette instead.
 - Classic icons store no palette; their colours come from the Workbench screen. AmIconEdit shows them with a selectable Workbench palette preset.
 
+## Author
+
+Andrzej Rogozynski (github: andrzej79)
+
 ## License
 
 MIT, see [LICENSE](LICENSE). The test fixtures under `Tests/AmigaIconKitTests/Fixtures` are icons from the author's own Warp software.
