@@ -138,12 +138,17 @@ struct SlotBar: View {
             .pickerStyle(.segmented)
             .labelsHidden()
             .fixedSize()
-            Spacer()
+            Spacer(minLength: 0)
             let (w, h) = editor.icon.canvasSize(editor.slot.kind)
             if editor.hasCurrentImage {
-                Text("\(w) × \(h)  ·  \(editor.icon.colorCount(editor.slot)) colours")
-                    .foregroundStyle(.secondary)
-                    .monospacedDigit()
+                // Never wrap: drop the colour count, then the size, when the window gets narrow.
+                ViewThatFits(in: .horizontal) {
+                    Text("\(w) × \(h)  ·  \(editor.icon.colorCount(editor.slot)) colours").fixedSize()
+                    Text("\(w) × \(h)").fixedSize()
+                    Color.clear.frame(width: 0, height: 0)
+                }
+                .foregroundStyle(.secondary)
+                .monospacedDigit()
             }
         }
         .padding(.horizontal, 12)

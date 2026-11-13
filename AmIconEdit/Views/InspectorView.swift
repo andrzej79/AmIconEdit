@@ -162,19 +162,31 @@ struct ImageInspector: View {
             if slot.kind == .color {
                 let index = Int(editor.primaryColor)
                 let color = editor.currentPalette[index]
-                ColorPicker("Colour \(index)", selection: Binding(
-                    get: { color.swiftUIColor },
-                    set: { new in setColor(AmigaIconKit.RGBColor(new), index: index, slot: slot) }), supportsOpacity: false)
-                LabeledContent("Hex") {
-                    TextField("#RRGGBB", text: $hexText)
-                        .onSubmit {
-                            if let c = AmigaIconKit.RGBColor(hexString: hexText) { setColor(c, index: index, slot: slot) }
-                            hexText = editor.currentPalette[index].description
-                        }
-                        .font(.system(.body, design: .monospaced))
-                        .frame(width: 96)
-                        .onAppear { hexText = color.description }
-                        .onChange(of: color) { _, new in hexText = new.description }
+                // One row: "Colour  <index> <well> <#RRGGBB>". Inner controls hide their own labels,
+                // otherwise the grouped form lays out the TextField's title as a second column.
+                LabeledContent("Colour") {
+                    HStack(spacing: 8) {
+                        Text("\(index)")
+                            .font(.system(.body, design: .monospaced))
+                            .foregroundStyle(.secondary)
+                        ColorPicker("Colour \(index)", selection: Binding(
+                            get: { color.swiftUIColor },
+                            set: { new in setColor(AmigaIconKit.RGBColor(new), index: index, slot: slot) }),
+                                    supportsOpacity: false)
+                            .labelsHidden()
+                        TextField("Hex", text: $hexText, prompt: Text("#RRGGBB"))
+                            .labelsHidden()
+                            .textFieldStyle(.roundedBorder)
+                            .multilineTextAlignment(.leading)
+                            .font(.system(.body, design: .monospaced))
+                            .frame(width: 92)
+                            .onSubmit {
+                                if let c = AmigaIconKit.RGBColor(hexString: hexText) { setColor(c, index: index, slot: slot) }
+                                hexText = editor.currentPalette[index].description
+                            }
+                            .onAppear { hexText = color.description }
+                            .onChange(of: color) { _, new in hexText = new.description }
+                    }
                 }
                 Menu("Apply Preset") {
                     ForEach(WorkbenchPalettes.all) { preset in
